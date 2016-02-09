@@ -91,138 +91,139 @@ class UniqueTogetherDataBag(HStoreModel):
     class Meta:
         unique_together = ('name', 'data')
 
-if get_version()[0:3] >= '1.6':
-    class SchemaDataBag(HStoreModel):
-        name = models.CharField(max_length=32)
-        data = hstore.DictionaryField(schema=[
-            {
-                'name': 'number',
-                'class': 'IntegerField',
-                'kwargs': {
-                    'default': 0
-                }
-            },
-            {
-                'name': 'float',
-                'class': models.FloatField,
-                'kwargs': {
-                    'default': 1.0
-                }
-            },
-            {
-                'name': 'boolean',
-                'class': 'BooleanField',
-            },
-            {
-                'name': 'boolean_true',
-                'class': 'BooleanField',
-                'kwargs': {
-                    'verbose_name': 'boolean true',
-                    'default': True
-                }
-            },
-            {
-                'name': 'char',
-                'class': 'CharField',
-                'kwargs': {
-                    'default': 'test', 'blank': True, 'max_length': 10
-                }
-            },
-            {
-                'name': 'text',
-                'class': 'TextField',
-                'kwargs': {
-                    'blank': True
-                }
-            },
-            {
-                'name': 'choice',
-                'class': 'CharField',
-                'kwargs': {
-                    'blank': True,
-                    'max_length': 10,
-                    'choices': (('choice1', 'choice1'), ('choice2', 'choice2')),
-                    'default': 'choice1'
-                }
-            },
-            {
-                'name': 'choice2',
-                'class': 'CharField',
-                'kwargs': {
-                    'blank': True,
-                    'max_length': 10,
-                    'choices': (('choice1', 'choice1'), ('choice2', 'choice2')),
-                }
-            },
-            {
-                'name': 'date',
-                'class': 'DateField',
-                'kwargs': {
-                    'blank': True
-                }
-            },
-            {
-                'name': 'datetime',
-                'class': 'DateTimeField',
-                'kwargs': {
-                    'blank': True,
-                    'null': True
-                }
-            },
-            {
-                'name': 'decimal',
-                'class': 'DecimalField',
-                'kwargs': {
-                    'blank': True,
-                    'decimal_places': 2,
-                    'max_digits': 4
-                }
-            },
-            {
-                'name': 'email',
-                'class': 'EmailField',
-                'kwargs': {
-                    'blank': True
-                }
-            },
-            {
-                'name': 'ip',
-                'class': 'GenericIPAddressField',
-                'kwargs': {
-                    'blank': True,
-                    'null': True
-                }
-            },
-            {
-                'name': 'url',
-                'class': models.URLField,
-                'kwargs': {
-                    'blank': True
-                }
-            },
-        ])
 
-    class NullSchemaDataBag(HStoreModel):
-        name = models.CharField(max_length=32)
-        data = hstore.DictionaryField(null=True, default=None, schema=[
-            {
-                'name': 'number',
-                'class': 'IntegerField',
-                'kwargs': {
-                    'default': 1
-                }
-            },
-            {
-                'name': 'char',
-                'class': 'CharField',
-                'kwargs': {
-                    'default': 'test', 'blank': True, 'max_length': 10
-                }
+class SchemaDataBag(HStoreModel):
+    name = models.CharField(max_length=32)
+    data = hstore.DictionaryField(schema=[
+        {
+            'name': 'number',
+            'class': 'IntegerField',
+            'kwargs': {
+                'default': 0
             }
-        ])
+        },
+        {
+            'name': 'float',
+            'class': models.FloatField,
+            'kwargs': {
+                'default': 1.0
+            }
+        },
+        {
+            'name': 'boolean',
+            'class': 'BooleanField',
+        },
+        {
+            'name': 'boolean_true',
+            'class': 'BooleanField',
+            'kwargs': {
+                'verbose_name': 'boolean true',
+                'default': True
+            }
+        },
+        {
+            'name': 'char',
+            'class': 'CharField',
+            'kwargs': {
+                'default': 'test', 'blank': True, 'max_length': 10
+            }
+        },
+        {
+            'name': 'text',
+            'class': 'TextField',
+            'kwargs': {
+                'blank': True
+            }
+        },
+        {
+            'name': 'choice',
+            'class': 'CharField',
+            'kwargs': {
+                'blank': True,
+                'max_length': 10,
+                'choices': (('choice1', 'choice1'), ('choice2', 'choice2')),
+                'default': 'choice1'
+            }
+        },
+        {
+            'name': 'choice2',
+            'class': 'CharField',
+            'kwargs': {
+                'blank': True,
+                'max_length': 10,
+                'choices': (('choice1', 'choice1'), ('choice2', 'choice2')),
+            }
+        },
+        {
+            'name': 'date',
+            'class': 'DateField',
+            'kwargs': {
+                'blank': True
+            }
+        },
+        {
+            'name': 'datetime',
+            'class': 'DateTimeField',
+            'kwargs': {
+                'blank': True,
+                'null': True
+            }
+        },
+        {
+            'name': 'decimal',
+            'class': 'DecimalField',
+            'kwargs': {
+                'blank': True,
+                'decimal_places': 2,
+                'max_digits': 4
+            }
+        },
+        {
+            'name': 'email',
+            'class': 'EmailField',
+            'kwargs': {
+                'blank': True
+            }
+        },
+        {
+            'name': 'ip',
+            'class': 'GenericIPAddressField',
+            'kwargs': {
+                'blank': True,
+                'null': True
+            }
+        },
+        {
+            'name': 'url',
+            'class': models.URLField,
+            'kwargs': {
+                'blank': True
+            }
+        },
+    ])
 
-    __all__.append('SchemaDataBag')
-    __all__.append('NullSchemaDataBag')
+
+class NullSchemaDataBag(HStoreModel):
+    name = models.CharField(max_length=32)
+    data = hstore.DictionaryField(null=True, default=None, schema=[
+        {
+            'name': 'number',
+            'class': 'IntegerField',
+            'kwargs': {
+                'default': 1
+            }
+        },
+        {
+            'name': 'char',
+            'class': 'CharField',
+            'kwargs': {
+                'default': 'test', 'blank': True, 'max_length': 10
+            }
+        }
+    ])
+
+__all__.append('SchemaDataBag')
+__all__.append('NullSchemaDataBag')
 
 
 # if geodjango is in use define Location model, which contains GIS data

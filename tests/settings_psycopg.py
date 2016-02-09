@@ -76,10 +76,5 @@ except ImportError:
 if django.VERSION[:2] >= (1, 6):
     TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 else:
-    try:
-        import discover_runner
-        TEST_RUNNER = "discover_runner.DiscoverRunner"
-    except ImportError:
-        print("For run tests with django <= 1.5 you should install "
-              "django-discover-runner.")
-        sys.exit(-1)
+    print("Django <= 1.6 is not supported.")
+    sys.exit(-1)
