@@ -686,3 +686,15 @@ class TestDictionaryField(TestCase):
         self.assertEqual(get_cast_for_param({'a': float}, 'a'), '::float8')
         from decimal import Decimal
         self.assertEqual(get_cast_for_param({'a': Decimal}, 'a'), '::numeric')
+
+    def test_array_with_decimal(self):
+        databag = DataBag(name="decimal")
+        array_decimal = [Decimal('1.01')]
+        array_dumped = '[1.01]'
+        databag.data['arr_dec'] = array_decimal
+
+        self.assertEqual(databag.data['arr_dec'], array_dumped)
+        databag.save()
+
+        databag = DataBag.objects.get(name="decimal")
+        self.assertEqual(databag.data['arr_dec'], array_dumped)
