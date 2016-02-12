@@ -31,8 +31,6 @@ from django_hstore_tests.models import (DataBag,
 
 
 class TestDictionaryField(TestCase):
-    def setUp(self):
-        DataBag.objects.all().delete()
 
     def _create_bags(self):
         alpha = DataBag.objects.create(name='alpha', data={'v': '1', 'v2': '3'})

@@ -14,8 +14,6 @@ from django_hstore_tests.models import SerializedDataBag, SerializedDataBagNoID
 
 
 class TestSerializedDictionaryField(TestCase):
-    def setUp(self):
-        SerializedDataBag.objects.all().delete()
 
     def _create_bags(self):
         alpha = SerializedDataBag.objects.create(name='alpha', data={'v': 1, 'v2': '3', 'v3': {'a': 1}})

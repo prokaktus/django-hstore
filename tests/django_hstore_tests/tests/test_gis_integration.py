@@ -10,9 +10,6 @@ if GEODJANGO_INSTALLED:
         pnt1 = GEOSGeometry('POINT(65.5758316 57.1345383)')
         pnt2 = GEOSGeometry('POINT(65.2316 57.3423233)')
 
-        def setUp(self):
-            Location.objects.all().delete()
-
         def _create_locations(self):
             loc1 = Location.objects.create(name='Location1', data={'prop1': '1', 'prop2': 'test_value'}, point=self.pnt1)
             loc2 = Location.objects.create(name='Location2', data={'prop1': '2', 'prop2': 'test_value'}, point=self.pnt2)

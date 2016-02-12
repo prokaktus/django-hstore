@@ -10,9 +10,6 @@ from django_hstore_tests.models import Ref, RefsBag, NullableRefsBag
 
 
 class TestReferencesField(TestCase):
-    def setUp(self):
-        Ref.objects.all().delete()
-        RefsBag.objects.all().delete()
 
     def _create_bags(self):
         refs = [Ref.objects.create(name=str(i)) for i in range(4)]
